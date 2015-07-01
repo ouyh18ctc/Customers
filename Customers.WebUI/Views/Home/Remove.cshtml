@@ -1,0 +1,11 @@
+﻿@model Customers.Domain.TableDef.Demand
+
+@if (ViewData.Model != null) {
+<form method="post" action="@Url.Action("Remove", "Home", new { demandId = Model.Id })" 
+    class="article-remove">
+
+	<button type="submit" name="remove" value="yes" class="yes">yes</button>
+	<button type="submit" name="remove" value="no" class="no">no</button>
+
+</form>
+}

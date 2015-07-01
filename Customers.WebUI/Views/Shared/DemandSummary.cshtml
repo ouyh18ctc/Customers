@@ -1,0 +1,47 @@
+﻿@model Customers.Domain.TableDef.DemandView
+
+@{
+    ViewBag.ImageUrl = "../../Content/images/" + Model.City + ".gif";
+}
+
+<div id="demand-@Model.Id", class="article">  
+@if (Context.User != null && Context.User.Identity != null && Context.User.Identity.IsAuthenticated)
+{
+    <div class="admin">
+    @if (Context.User.Identity.Name == "admin")
+    {
+        @Html.ActionLink("编辑需求", "Edit", new { controller = "Home", demandId = Model.Id })
+        <span>&nbsp;|&nbsp;</span>
+        @Html.ActionLink("删除需求", "Remove", new { controller = "Home", demandId = Model.Id })
+        if (Model.AllowFinish)
+        {
+        <span>&nbsp;|&nbsp;</span>
+        }
+    }
+    @if (Model.AllowFinish && (!Model.IsFinished))
+    {
+        @Html.ActionLink("需求结单", "Finish", new { controller = "Home", demandId = Model.Id })
+    }
+    </div>
+}
+    <img alt="无可用相片" src="@ViewBag.ImageUrl" class="category-image" title="@Html.Encode(Model.City)" />
+    <h3>@Model.ProjectName</h3>
+    <p><strong>@Html.LabelFor(x => x.ProjectState):</strong>@Model.ProjectState</p>
+    <p><strong>@Html.LabelFor(x => x.Satisfactory):</strong>@Model.Satisfactory</p>
+    <div class="comment">
+        <div class="comment-header">详细信息</div>
+        <blockquote style="display:none">
+            <p><strong>@Html.LabelFor(x => x.ReceiveDate):</strong>@Model.ReceiveDate</p>
+            <p><strong>@Html.LabelFor(x => x.ExpectedCompleteDate):</strong>@Model.ExpectedCompleteDate</p>
+            <p><strong>实际完成日期：</strong>@Model.ActualCompleteDate</p>
+            <p><strong>@Html.LabelFor(x => x.Supporter):</strong>@Model.Supporter</p>
+            <p><strong>@Html.LabelFor(x => x.MarketingTheme):</strong>@Model.MarketingTheme</p>
+            <p><strong>@Html.LabelFor(x => x.DemandLevel):</strong>@Model.DemandLevel</p>
+            <p><strong>@Html.LabelFor(x => x.DemandType):</strong>@Model.DemandType</p>
+            <p><strong>@Html.LabelFor(x => x.DemandSource):</strong>@Model.DemandSource</p>
+            <p><strong>@Html.LabelFor(x => x.ProgressDescription):</strong>@Model.ProgressDescription</p>
+        </blockquote>
+    </div>
+    
+</div>
+

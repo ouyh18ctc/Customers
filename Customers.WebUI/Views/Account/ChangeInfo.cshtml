@@ -1,0 +1,9 @@
+﻿@model Customers.WebUI.Models.ChangeInfoViewModel
+
+@using (Html.BeginForm("ChangeInfo", "Account", FormMethod.Post))
+{
+    @Html.EditorForModel()
+    
+    <hr />
+	<p><button type="submit" id="user-login-button">提交</button></p>
+}

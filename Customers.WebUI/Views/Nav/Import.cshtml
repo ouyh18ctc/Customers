@@ -1,0 +1,47 @@
+﻿@model Customers.WebUI.Models.ExcelImportViewModel
+@using Customers.Domain.TableDef
+
+@using (Html.BeginForm("Import", "Nav",
+    FormMethod.Post, new { enctype = "multipart/form-data" })){
+    <p class="field input">
+        Excel文件选择：
+        <input type="file" name="fileUpload" />
+    </p>
+    @Html.HiddenFor(x=>x.CityPermissions)
+    <p><button type="submit" class="yes">导入Excel</button></p>
+    }
+
+<div class="form">
+<h3>导入信息简要内容</h3>
+@if (Model.ReadingRepository.DataList.Count > 0)
+{
+<table summary="User Grid" class="zebra">
+<thead>
+<tr style="font-weight:bold; background-color:#A8C3CB;">
+	<th>@Html.LabelFor(x => x.ReadingRepository.DataList[0].City)</th>
+    <th>@Html.LabelFor(x => x.ReadingRepository.DataList[0].ProjectName)</th>
+    <th>@Html.LabelFor(x => x.ReadingRepository.DataList[0].MarketingTheme)</th>
+    <th>@Html.LabelFor(x => x.ReadingRepository.DataList[0].ProgressDescription)</th>
+    <th>@Html.LabelFor(x => x.ReadingRepository.DataList[0].ProjectState)</th>
+    <th>@Html.LabelFor(x => x.ReadingRepository.DataList[0].Supporter)</th>
+    <th>@Html.LabelFor(x => x.ReadingRepository.DataList[0].Satisfactory)</th>
+</tr>
+</thead>
+<tbody>
+@foreach (DemandView demand in Model.ReadingRepository.DataList)
+{ 
+    <tr>
+        <td>@demand.City</td>
+        <td>@demand.ProjectName</td>
+        <td>@demand.MarketingTheme</td>
+        <td>@demand.ProgressDescription</td>
+        <td>@demand.ProjectState</td>
+        <td>@demand.Supporter</td>
+        <td>@demand.Satisfactory</td>
+    </tr>
+}
+</tbody>
+
+</table>
+}
+</div>

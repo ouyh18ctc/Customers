@@ -1,0 +1,8 @@
+﻿@model Customers.WebUI.Models.RegisterViewModel
+
+@using (Html.BeginForm("Register", "Account", FormMethod.Post, new { @class = "user-registration" }))
+{
+    @Html.EditorForModel()
+    <hr />
+    <p><button type="submit" id="user-registration-button">提交</button></p>
+}

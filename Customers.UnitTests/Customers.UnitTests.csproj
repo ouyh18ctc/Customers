@@ -1,0 +1,119 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>
+    </ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{6DA2263F-769F-43DA-997D-A528477018E8}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Customers.UnitTests</RootNamespace>
+    <AssemblyName>Customers.UnitTests</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <ProjectTypeGuids>{3AC096D0-A1C2-E12C-1390-A8335801FDAB};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Microsoft.VisualStudio.QualityTools.UnitTestFramework, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL" />
+    <Reference Include="Moq">
+      <HintPath>..\..\EGarden\EGarden.Domain\bin\Debug\Moq.dll</HintPath>
+    </Reference>
+    <Reference Include="Ninject">
+      <HintPath>..\..\EGarden\packages\Ninject.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.configuration" />
+    <Reference Include="System.Core">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Data" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.ApplicationServices" />
+    <Reference Include="System.Web.Mvc, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
+    <Reference Include="System.Web.WebPages, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
+    <Reference Include="System.XML" />
+  </ItemGroup>
+  <ItemGroup>
+    <CodeAnalysisDependentAssemblyPaths Condition=" '$(VS100COMNTOOLS)' != '' " Include="$(VS100COMNTOOLS)..\IDE\PrivateAssemblies">
+      <Visible>False</Visible>
+    </CodeAnalysisDependentAssemblyPaths>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Excel\ColumnClass.cs" />
+    <Compile Include="Excel\ColumnClassTest.cs" />
+    <Compile Include="Excel\ColumnSetValuesTest.cs" />
+    <Compile Include="Excel\DataReaderGetFieldsTest.cs" />
+    <Compile Include="Excel\DataReaderGetFieldTest.cs" />
+    <Compile Include="Excel\DataReadingRepositoryColumnTest.cs" />
+    <Compile Include="Excel\ExcelImporterTest.cs" />
+    <Compile Include="Excel\GetColumnPropertyNamesTest.cs" />
+    <Compile Include="Excel\MockDataReader.cs" />
+    <Compile Include="Excel\MockDataReaderArrayTest.cs" />
+    <Compile Include="Excel\MockDataReaderStateTest.cs" />
+    <Compile Include="Excel\PropertyConvertTest.cs" />
+    <Compile Include="Excel\StubExcelImporter.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Security\GetPermissionCitiesTest.cs" />
+    <Compile Include="Security\SingleUserMembershipProviderTest.cs" />
+    <Compile Include="Security\TwoUsersMembershipProviderTest.cs" />
+    <Compile Include="Security\UserInformationPermissionTest.cs" />
+    <Compile Include="Security\UserInformationQueriesTest.cs" />
+    <Compile Include="TableDefine\DemandRepositoryDeleteTest.cs" />
+    <Compile Include="TableDefine\DemandRepositorySaveTest.cs" />
+    <Compile Include="TableDefine\DemandRepositoryTest.cs" />
+    <Compile Include="TableDefine\DemandTest.cs" />
+    <Compile Include="TableDefine\DemandViewTest.cs" />
+    <Compile Include="TableDefine\GetDemandStatByDelayTest.cs" />
+    <Compile Include="TableDefine\GetDemandStatByLevelTest.cs" />
+    <Compile Include="TableDefine\GetDemandStatByTypeTest.cs" />
+    <Compile Include="TableDefine\GetFittedDemandRecordTest.cs" />
+    <Compile Include="TypeDefine\AcceptPathDefTest.cs" />
+    <Compile Include="TypeDefine\CityDefTest.cs" />
+    <Compile Include="TypeDefine\CustomerLevelDefTest.cs" />
+    <Compile Include="Excel\DemandClonePropertiesTest.cs" />
+    <Compile Include="TypeDefine\DemandLevelDefTest.cs" />
+    <Compile Include="TypeDefine\DemandSourceDefTest.cs" />
+    <Compile Include="TypeDefine\DemandTypeDefTest.cs" />
+    <Compile Include="Excel\GeneralClonePropertiesTest.cs" />
+    <Compile Include="TypeDefine\MarketingThemeDefTest.cs" />
+    <Compile Include="TypeDefine\ProjectStateDefTest.cs" />
+    <Compile Include="TypeDefine\SatisfactoryDefTest.cs" />
+    <Compile Include="ViewHelper\FakeListProvider.cs" />
+    <Compile Include="ViewHelper\ListProviderTest.cs" />
+    <Compile Include="ViewHelper\PagingHelpersTest.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Customers.Domain\Customers.Domain.csproj">
+      <Project>{56D92FE3-1343-4C04-B690-D9A057FDBAA8}</Project>
+      <Name>Customers.Domain</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

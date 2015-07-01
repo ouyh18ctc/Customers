@@ -1,0 +1,32 @@
+﻿@model IEnumerable<Customers.Domain.Security.UserInformation>
+
+@using (Html.BeginForm("ManageUsers", "Account", FormMethod.Post))
+{ 
+    <p><b>已注册的用户总数: </b>@Model.Count()</p>
+    
+    <table class="zebra" summary="User Grid">
+        <thead>
+            <tr style="font-weight:bold; background-color:#A8C3CB;">
+	            <th>用户名</th>
+	            <th>电子邮箱</th>
+	            <th>管理信息</th>
+            </tr>
+        </thead>
+        <tbody>
+        @foreach (Customers.Domain.Security.UserInformation info in Model)
+        {
+            <tr>
+                <td>@Html.Encode(info.UserName)</td>
+                <td>@Html.Encode(info.EMail)</td>
+                <td>@Html.ActionLink("修改权限","ModifyPermission", new { username = info.UserName })                          
+                @if (info.UserName != "admin")
+                {   
+                    <span>&nbsp;|&nbsp;</span>                 
+                    @Html.ActionLink("删除用户", "DeleteUser", new { username = info.UserName });
+                }
+                </td> 
+            </tr>
+        }
+        </tbody>
+    </table>
+}

@@ -1,0 +1,26 @@
+﻿@model IEnumerable<string>
+
+@Html.ActionLink("所有需求", "Index", "Home")
+
+@Html.ActionLink("新增需求", "Create", "Home", new { city = ViewBag.SelectedCity }, null)
+
+@Html.ActionLink("查询与导出", "Query", "Home", new { city = ViewBag.SelectedCity }, null)
+
+@Html.ActionLink("批量导入", "Import", "Nav")
+
+@Html.ActionLink("信息统计", "StatByLevel", "Nav")
+
+@foreach (var link in Model)
+{
+    @Html.RouteLink(link, new
+    {
+        controller = "Home",
+        action = "Index",
+        city = link,
+        page = 1
+    },
+    new
+    {
+        @class = link == ViewBag.SelectedCity ? "selected" : null
+    })
+}

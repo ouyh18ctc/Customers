@@ -1,0 +1,90 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{31AC026D-1901-4836-B157-B9B14F007BE8}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>LinqToCsv</RootNamespace>
+    <AssemblyName>LinqToCsv</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Attribute\CsvInputFormatAttribute.cs" />
+    <Compile Include="Attribute\CsvOutputFormatAttribute.cs" />
+    <Compile Include="Context\CsvContext.cs" />
+    <Compile Include="Context\FileDataAccess.cs" />
+    <Compile Include="Context\RowReader.cs" />
+    <Compile Include="Description\CsvFileDescription.cs" />
+    <Compile Include="Description\DataRow.cs" />
+    <Compile Include="Description\DataRowItem.cs" />
+    <Compile Include="Description\IDataRow.cs" />
+    <Compile Include="Exception\AggregatedException.cs" />
+    <Compile Include="Exception\BadStreamException.cs" />
+    <Compile Include="Exception\CsvColumnAttributeRequiredException.cs" />
+    <Compile Include="Exception\DuplicateFieldIndexException.cs" />
+    <Compile Include="Exception\LinqToCsvException.cs" />
+    <Compile Include="Exception\MissingCsvColumnAttributeException.cs" />
+    <Compile Include="Exception\MissingFieldIndexException.cs" />
+    <Compile Include="Exception\MissingRequiredFieldException.cs" />
+    <Compile Include="Exception\NameNotInTypeException.cs" />
+    <Compile Include="Exception\RequiredButMissingFieldIndexException.cs" />
+    <Compile Include="Exception\ToBeWrittenButMissingFieldIndexException.cs" />
+    <Compile Include="Exception\TooManyDataFieldsException.cs" />
+    <Compile Include="Exception\TooManyNonCsvColumnDataFieldsException.cs" />
+    <Compile Include="Exception\WrongDataFormatException.cs" />
+    <Compile Include="Exception\WrongFieldIndexException.cs" />
+    <Compile Include="Mapper\FieldIndexInfo.cs" />
+    <Compile Include="Mapper\FieldMapper.cs" />
+    <Compile Include="Mapper\FieldMapper_Reading.cs" />
+    <Compile Include="Mapper\TypeFieldInfo.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="StreamDef\CsvStream.cs" />
+    <Compile Include="StreamDef\CsvStreamBuffer.cs" />
+    <Compile Include="StreamDef\CsvStreamLine.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Customers.Domain\Customers.Domain.csproj">
+      <Project>{56D92FE3-1343-4C04-B690-D9A057FDBAA8}</Project>
+      <Name>Customers.Domain</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

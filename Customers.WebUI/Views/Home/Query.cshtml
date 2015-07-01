@@ -1,0 +1,11 @@
+﻿@model Customers.WebUI.Models.QueryDemandViewModel
+
+@using (Html.BeginForm("Query", "Home",
+    FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    @Html.LabelFor(x=>x.CurrentCities)
+    @Html.EditorFor(x=>x.CurrentCities)
+    @Html.EditorForModel()
+    <input type="submit" value="查询信息" />
+}
+

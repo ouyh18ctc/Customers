@@ -1,0 +1,62 @@
+﻿@model Customers.WebUI.Models.StatByLevelViewModel
+@using Customers.Domain.TableDef
+
+@section sidebar{
+            <div id="stat" class="boxed">
+			    <h2 class="title">统计功能</h2>
+			    <div class="content">
+                    <ul>
+                        <li>@Html.ActionLink("按等级统计", "StatByLevel", "Nav")</li>
+                        <li>@Html.ActionLink("按历时统计", "StatByDelay", "Nav")</li>
+                        <li>@Html.ActionLink("按类型统计", "StatByType", "Nav")</li>
+                    </ul>
+                </div>
+            </div>
+}
+
+@using (Html.BeginForm("StatByLevel", "Nav",
+    FormMethod.Post, new { enctype = "multipart/form-data" })){
+    @Html.LabelFor(x=>x.TimeSpan)
+    @Html.EditorFor(x => x.TimeSpan)
+    @Html.LabelFor(x => x.BeginTime)
+    @Html.EditorFor(x => x.BeginTime)
+    @Html.LabelFor(x => x.EndTime)
+    @Html.EditorFor(x => x.EndTime)
+    <p><button type="submit" class="yes">查询</button>
+    @Html.ActionLink("导出结果", "ExportStatByLevel", new { fileName = "StatByLevel.csv" })</p>
+    }
+
+<div class="form">
+<h3>查询结果</h3>
+@if (Model.Results != null && Model.Results.Count() > 0)
+{
+<table summary="User Grid" class="zebra">
+<thead>
+<tr style="font-weight:bold; background-color:#A8C3CB;">
+	<th>城市</th>
+    <th>A级已完成</th>
+    <th>A级总数</th>
+    <th>B级已完成</th>
+    <th>B级总数</th>
+    <th>C级已完成</th>
+    <th>C级总数</th>
+</tr>
+</thead>
+<tbody>
+@foreach (ByLevelDemandStat stat in Model.Results)
+{ 
+    <tr>
+        <td>@stat.City</td>
+        <td>@stat.ALevelFinished</td>
+        <td>@stat.ALevelTotal</td>
+        <td>@stat.BLevelFinished</td>
+        <td>@stat.BLevelTotal</td>
+        <td>@stat.CLevelFinished</td>
+        <td>@stat.CLevelTotal</td>
+    </tr>
+}
+</tbody>
+
+</table>
+}
+</div>

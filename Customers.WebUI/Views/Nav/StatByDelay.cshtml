@@ -1,0 +1,75 @@
+﻿@model Customers.WebUI.Models.StatByDelayViewModel
+@using Customers.Domain.TableDef
+
+@section sidebar{
+            <div id="stat" class="boxed">
+			    <h2 class="title">统计功能</h2>
+			    <div class="content">
+                    <ul>
+                        <li>@Html.ActionLink("按等级统计", "StatByLevel", "Nav")</li>
+                        <li>@Html.ActionLink("按历时统计", "StatByDelay", "Nav")</li>
+                        <li>@Html.ActionLink("按类型统计", "StatByType", "Nav")</li>
+                    </ul>
+                </div>
+            </div>
+}
+
+@using (Html.BeginForm("StatByDelay", "Nav",
+    FormMethod.Post, new { enctype = "multipart/form-data" })){
+    @Html.LabelFor(x=>x.TimeSpan)
+    @Html.EditorFor(x => x.TimeSpan)
+    @Html.LabelFor(x => x.BeginTime)
+    @Html.EditorFor(x => x.BeginTime)
+    @Html.LabelFor(x => x.EndTime)
+    @Html.EditorFor(x => x.EndTime)
+    <p><button type="submit" class="yes">查询</button>
+    @Html.ActionLink("导出结果", "ExportStatByDelay", new { fileName = "StatByDelay.csv" })</p>
+    }
+
+<div class="form">
+<h3>查询结果</h3>
+@if (Model.Results != null && Model.Results.Count() > 0)
+{
+<table summary="User Grid" class="zebra">
+<thead>
+<tr style="font-weight:bold; background-color:#A8C3CB;">
+	<th>城市</th>
+    <th>A级历时一个月</th>
+    <th>A级历时一季度</th>
+    <th>A级历时半年</th>
+    <th>A级总数</th>
+    <th>B级历时一个月</th>
+    <th>B级历时一季度</th>
+    <th>B级历时半年</th>
+    <th>B级总数</th>
+    <th>C级历时一个月</th>
+    <th>C级历时一季度</th>
+    <th>C级历时半年</th>
+    <th>C级总数</th>
+</tr>
+</thead>
+<tbody>
+@foreach (ByDelayDemandStat stat in Model.Results)
+{ 
+    <tr>
+        <td>@stat.City</td>
+        <td>@stat.ALevelOneMonth</td>
+        <td>@stat.ALevelOneQuarter</td>
+        <td>@stat.ALevelHalfYear</td>
+        <td>@stat.ALevelTotal</td>
+        <td>@stat.BLevelOneMonth</td>
+        <td>@stat.BLevelOneQuarter</td>
+        <td>@stat.BLevelHalfYear</td>
+        <td>@stat.BLevelTotal</td>
+        <td>@stat.CLevelOneMonth</td>
+        <td>@stat.CLevelOneQuarter</td>
+        <td>@stat.CLevelHalfYear</td>
+        <td>@stat.CLevelTotal</td>
+    </tr>
+}
+</tbody>
+
+</table>
+}
+</div>
+

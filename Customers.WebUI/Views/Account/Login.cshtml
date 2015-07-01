@@ -1,0 +1,11 @@
+﻿@model Customers.WebUI.Models.UserLoginViewModel
+
+@using (Html.BeginForm("Login", "Account", FormMethod.Post, new { @class = "user-login" })) { 
+    @Html.EditorForModel()
+    <p>
+		@Html.ActionLink("忘记密码", "ForgotPassword") &nbsp;| &nbsp;
+		@Html.ActionLink("注册账号", "Register")
+	</p>
+    <hr />
+	<p><button type="submit" id="user-login-button">提交</button></p>
+}

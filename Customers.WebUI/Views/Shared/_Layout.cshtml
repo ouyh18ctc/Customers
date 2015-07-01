@@ -1,0 +1,71 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title>市级客服支撑系统 /@ViewBag.Title</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+</head>
+<body>
+    <div id="header">
+        <div id="logo">
+            <h1><a href="/">无线中心市级客服支撑系统</a></h1>
+        </div>
+        <div id="menu">
+            <ul>
+                @if (Context.User != null && Context.User.Identity != null && Context.User.Identity.IsAuthenticated)
+                { 
+                    <li class="first">欢迎您 @Context.User.Identity.Name</li>
+                    <li>@Html.ActionLink("退出登录", "Logout", "Account")</li>
+                }
+                else
+                { 
+                    <li class="first">@Html.ActionLink("登录账号", "Login", "Account")</li>
+                }
+            </ul>
+        </div>
+    </div>
+    <div id="page">
+        <div id="content">
+            <div id="categories">
+                @{ Html.RenderAction("Menu", "Nav"); }
+            </div>
+            <div id="articles">
+                @RenderPage("~/Views/Shared/Message.cshtml")
+                <h1 class="title">@ViewBag.Title</h1>
+                @RenderBody() 
+            </div>          
+        </div>
+        
+        <div id="sidebar">
+        @if (Context.User != null && Context.User.Identity != null && Context.User.Identity.IsAuthenticated
+            && Context.User.Identity.Name == "admin")
+        {
+            <div id="account" class="boxed">
+			    <h2 class="title">帐号管理</h2>
+			    <div class="content">
+                    <ul>
+                        <li>@Html.ActionLink("修改密码", "ChangePassword", "Account",
+                        new { username = Context.User.Identity.Name }, null)</li>
+                        <li>@Html.ActionLink("修改信息", "ChangeInfo", "Account",
+                        new { username = Context.User.Identity.Name }, null)</li>
+                        <li>@Html.ActionLink("管理用户", "ManageUsers", "Account")</li>
+                    </ul>
+                </div>
+            </div>           
+        }
+        @RenderSection("sidebar", required:false)
+        </div>        
+        <div style="clear: both;">&nbsp;</div>
+    </div>  
+    <div id="footer">
+	    <p id="legal">&copy;2012-2014 版权所有。请联系无线网络中心 
+            <a href="mailto:huhy8@189.cn">胡海燕</a>|<a href="http://219.128.254.41:65100">友情链接-网络维护</a>
+        </p>
+     </div>
+    
+    @Scripts.Render("~/bundles/jquery")
+    @RenderSection("scripts", required: false)
+</body>
+</html>

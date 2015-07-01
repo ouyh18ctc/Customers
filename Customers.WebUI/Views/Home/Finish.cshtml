@@ -1,0 +1,11 @@
+﻿@model Customers.Domain.TableDef.FinishDemandView
+
+@using (Html.BeginForm("Finish", "Home",
+    FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    <p>城市：@Model.City</p>
+    <p>项目名称：@Model.ProjectName</p>
+    <p>完成状态：@Model.ProjectState</p>
+    @Html.EditorForModel()
+    <input type="submit" value="结单" />
+}

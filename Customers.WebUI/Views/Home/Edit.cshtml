@@ -1,0 +1,9 @@
+﻿@model Customers.Domain.TableDef.DemandView
+
+@using (Html.BeginForm("Edit", "Home",
+    FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    @Html.EditorForModel()
+    <input type="submit" value="保存结果" />
+    @Html.ActionLink("放弃修改并返回", "Index")
+}

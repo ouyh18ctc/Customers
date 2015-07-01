@@ -1,0 +1,6 @@
+var polygon = new BMap.Polygon([
+                        new BMap.Point(112.1, 23),
+                        new BMap.Point(112.101, 23.002),
+                        new BMap.Point(112.102, 23.001)
+                        ], { strokeColor: "blue", strokeWeight: 2, strokeOpacity: 0.5 });
+    map.addOverlay(polygon);

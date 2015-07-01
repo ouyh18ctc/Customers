@@ -1,0 +1,70 @@
+﻿@model Customers.WebUI.Models.StatByTypeViewModel
+@using Customers.Domain.TableDef
+
+@section sidebar{
+            <div id="stat" class="boxed">
+			    <h2 class="title">统计功能</h2>
+			    <div class="content">
+                    <ul>
+                        <li>@Html.ActionLink("按等级统计", "StatByLevel", "Nav")</li>
+                        <li>@Html.ActionLink("按历时统计", "StatByDelay", "Nav")</li>
+                        <li>@Html.ActionLink("按类型统计", "StatByType", "Nav")</li>
+                    </ul>
+                </div>
+            </div>
+}
+
+@using (Html.BeginForm("StatByType", "Nav",
+    FormMethod.Post, new { enctype = "multipart/form-data" })){
+    @Html.LabelFor(x=>x.TimeSpan)
+    @Html.EditorFor(x => x.TimeSpan)
+    @Html.LabelFor(x => x.BeginTime)
+    @Html.EditorFor(x => x.BeginTime)
+    @Html.LabelFor(x => x.EndTime)
+    @Html.EditorFor(x => x.EndTime)
+    <p><button type="submit" class="yes">查询</button>
+    @Html.ActionLink("导出结果","ExportStatByType", new { fileName = "StatByType.csv" })</p>
+    }
+
+<div class="form">
+<h3>查询结果</h3>
+@if (Model.Results != null && Model.Results.Count() > 0)
+{
+<table summary="User Grid" class="zebra">
+<thead>
+<tr style="font-weight:bold; background-color:#A8C3CB;">
+	<th>城市</th>
+    <th>重要区域信号优化完成</th>
+    <th>重要区域信号优化</th>
+    <th>应急支撑完成</th>
+    <th>应急支撑</th>
+    <th>政企客户网优完成</th>
+    <th>政企客户网优</th>
+    <th>市场放号完成</th>
+    <th>市场放号</th>
+    <th>VIP客户投诉处理完成</th>
+    <th>VIP客户投诉处理</th>
+</tr>
+</thead>
+<tbody>
+@foreach (ByTypeDemandStat stat in Model.Results)
+{ 
+    <tr>
+        <td>@stat.City</td>
+        <td>@stat.CommunicationFinished</td>
+        <td>@stat.CommunicationTotal</td>
+        <td>@stat.EmergencyFinished</td>
+        <td>@stat.EmergencyTotal</td>
+        <td>@stat.IntraFinished</td>
+        <td>@stat.IntraTotal</td>
+        <td>@stat.MarketFinished</td>
+        <td>@stat.MarketTotal</td>
+        <td>@stat.VipFinished</td>
+        <td>@stat.VipTotal</td>
+    </tr>
+}
+</tbody>
+
+</table>
+}
+</div>

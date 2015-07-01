@@ -1,0 +1,69 @@
+﻿@model IEnumerable<Customers.Domain.TableDef.DemandView>
+
+@if (Model.Count() > 0)
+{
+    using (Html.BeginForm("Export", "Home", new
+    {
+        fileName = "text.csv",
+        filePath = "test.csv"
+    },
+        FormMethod.Post, new { enctype = "multipart/form-data" }))
+    {
+    <p class="field input">
+        <button type="submit" class="yes">导出CSV文件</button>
+    </p>
+    }
+<table summary="User Grid" class="zebra">
+    <thead>
+    <tr style="font-weight:bold; background-color:#A8C3CB;">
+	    <th>@Html.LabelFor(x => x.ElementAt(0).City)</th>
+        <th>@Html.LabelFor(x => x.ElementAt(0).Recept)</th>
+        <th>@Html.LabelFor(x => x.ElementAt(0).ProjectName)</th>
+        <th>@Html.LabelFor(x => x.ElementAt(0).Department)</th>
+        <th>@Html.LabelFor(x => x.ElementAt(0).Comments)</th>
+        <th>@Html.LabelFor(x => x.ElementAt(0).ReceiveDate)</th>
+        <th>@Html.LabelFor(x => x.ElementAt(0).AcceptPath)</th>
+        <th>@Html.LabelFor(x => x.ElementAt(0).Supporter)</th>
+        <th>@Html.LabelFor(x => x.ElementAt(0).DemandLevel)</th>
+        <th>@Html.LabelFor(x => x.ElementAt(0).DemandType)</th>
+        <th>@Html.LabelFor(x => x.ElementAt(0).ProjectState)</th>
+        <th>对需求进行操作</th>
+    </tr>
+    </thead>
+    <tbody>
+    @foreach (Customers.Domain.TableDef.DemandView demand in Model)
+    { 
+    <tr>
+        <td>@demand.City</td>
+        <td>@demand.Recept</td>
+        <td>@demand.ProjectName</td>
+        <td>@demand.Department</td>
+        <td>@demand.Comments</td>
+        <td>@demand.ReceiveDate</td>
+        <td>@demand.AcceptPath</td>
+        <td>@demand.Supporter</td>
+        <td>@demand.DemandLevel</td>
+        <td>@demand.DemandType</td>
+        <td>@demand.ProjectState</td>
+        <td>@if (Context.User != null && Context.User.Identity != null && Context.User.Identity.IsAuthenticated)
+            { 
+                if (Context.User.Identity.Name == "admin")
+                {
+                    @Html.ActionLink("编辑需求", "Edit", new { controller = "Home", demandId = demand.Id })
+                    <span>&nbsp;|&nbsp;</span>
+                    @Html.ActionLink("删除需求", "Remove", new { controller = "Home", demandId = demand.Id })
+                    if (demand.AllowFinish)
+                    {
+                        <span>&nbsp;|&nbsp;</span>
+                    }
+                }
+                if (demand.AllowFinish && (!demand.IsFinished))
+                {
+                    @Html.ActionLink("需求结单", "Finish", new { controller = "Home", demandId = demand.Id })
+                }
+            }</td>
+    </tr>
+    }
+</tbody>
+</table>
+}

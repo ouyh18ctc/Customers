@@ -1,0 +1,26 @@
+﻿@model Customers.WebUI.Models.ModifyPermissionViewModel
+
+<input type="button" value="全选" id="selectAll" />  
+<input type="button" value="全不选" id="unSelect" />
+@using (Html.BeginForm("ModifyPermission", "Account", FormMethod.Post)) { 
+    @Html.HiddenFor(x=>x.UserName)
+    @Html.LabelFor(x=>x.Cities)
+    @Html.EditorFor(x=>x.Cities)
+
+    <hr />
+	<p><button type="submit" id="user-login-button">提交</button></p>
+}
+
+@section scripts{
+<script type="text/javascript">
+    $(function () {
+        $("#selectAll").click(function () {//全选  
+            $("input:checkbox").attr("checked", true);
+        });
+
+        $("#unSelect").click(function () {//全不选  
+            $("input:checkbox").attr("checked", false);
+        });
+    });
+</script>
+}

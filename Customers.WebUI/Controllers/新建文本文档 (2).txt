@@ -1,0 +1,17 @@
+// 百度地图API功能
+    var longtitute = document.getElementById("Longtitute").value;
+    var lattitute = document.getElementById("Lattitute").value;
+    var baseInfo = document.getElementById("Name").value + ": " +
+        document.getElementById("Address").value;
+    var map = new BMap.Map("allmap");            // 创建Map实例
+    var point = new BMap.Point(longtitute, lattitute);    // 创建点坐标
+    var id = document.getElementById("ENodebId").value;
+    map.centerAndZoom(point, 15);                     // 初始化地图,设置中心点坐标和地图级别。
+    
+    var marker = new BMap.Marker(new BMap.Point(longtitute, lattitute));  // 创建标注
+    map.addOverlay(marker);              // 将标注添加到地图中
+    map.enableScrollWheelZoom();                            //启用滚轮放大缩小
+
+    //创建信息窗口
+    var infoWindow = new BMap.InfoWindow(baseInfo);
+    marker.addEventListener("click", function () { this.openInfoWindow(infoWindow); });

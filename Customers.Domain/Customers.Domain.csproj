@@ -1,0 +1,114 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{56D92FE3-1343-4C04-B690-D9A057FDBAA8}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Customers.Domain</RootNamespace>
+    <AssemblyName>Customers.Domain</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Customers.WebUI\bin\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.configuration" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.ApplicationServices" />
+    <Reference Include="System.Web.Mvc, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
+    <Reference Include="System.Web.WebPages, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Excel\ColumnAttribute.cs" />
+    <Compile Include="Excel\CsvColumnAttribute.cs" />
+    <Compile Include="Excel\DataReadingRepository.cs" />
+    <Compile Include="Excel\ExcelImporter.cs" />
+    <Compile Include="Excel\GeneralText.cs" />
+    <Compile Include="Excel\IExcelImporter.cs" />
+    <Compile Include="Excel\ColumnOperations.cs" />
+    <Compile Include="Excel\TypeConvertion.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Security\CustomerMembershipProvider.cs" />
+    <Compile Include="Security\EFDbContext.cs" />
+    <Compile Include="Security\EFUserRepository.cs" />
+    <Compile Include="Security\FakeUserRepository.cs" />
+    <Compile Include="Security\IUserInformationRepository.cs" />
+    <Compile Include="Security\UserInformation.cs" />
+    <Compile Include="TableDef\ByDelayDemandStat.cs" />
+    <Compile Include="TableDef\ByLevelDemandStat.cs" />
+    <Compile Include="TableDef\ByTypeDemandStat.cs" />
+    <Compile Include="TableDef\Demand.cs" />
+    <Compile Include="TableDef\DemandQueries.cs" />
+    <Compile Include="TableDef\DemandView.cs" />
+    <Compile Include="TableDef\EFDemandRepository.cs" />
+    <Compile Include="TableDef\FakeDemandRepository.cs" />
+    <Compile Include="TableDef\FakeProgressRepository.cs" />
+    <Compile Include="TableDef\FinishDemandView.cs" />
+    <Compile Include="TableDef\IDemandRepository.cs" />
+    <Compile Include="TableDef\IProgressRepository.cs" />
+    <Compile Include="TableDef\WeekProgress.cs" />
+    <Compile Include="TypeDef\AcceptPathDef.cs" />
+    <Compile Include="TypeDef\CityDef.cs" />
+    <Compile Include="TypeDef\CustomerLevelDef.cs" />
+    <Compile Include="TypeDef\DemandLevelDef.cs" />
+    <Compile Include="TypeDef\DemandSourceDef.cs" />
+    <Compile Include="TypeDef\DemandTypeDef.cs" />
+    <Compile Include="TypeDef\MarketingThemeDef.cs" />
+    <Compile Include="TypeDef\ProjectStateDef.cs" />
+    <Compile Include="Excel\PropertyOperations.cs" />
+    <Compile Include="TypeDef\SatisfactoryDef.cs" />
+    <Compile Include="ViewHelper\CompareValues.cs" />
+    <Compile Include="ViewHelper\CompareValuesAttribute.cs" />
+    <Compile Include="ViewHelper\DefaultListProvider.cs" />
+    <Compile Include="ViewHelper\DemandListProvider.cs" />
+    <Compile Include="ViewHelper\IListProvider.cs" />
+    <Compile Include="ViewHelper\ListAttribute.cs" />
+    <Compile Include="ViewHelper\ListControlExtensions.cs" />
+    <Compile Include="ViewHelper\ListItem.cs" />
+    <Compile Include="ViewHelper\ListProvider.cs" />
+    <Compile Include="ViewHelper\ListProviderBase.cs" />
+    <Compile Include="ViewHelper\PagingHelpers.cs" />
+    <Compile Include="ViewHelper\PagingInfo.cs" />
+    <Compile Include="ViewHelper\TimeSelectorProvider.cs" />
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
